@@ -32,6 +32,14 @@ namespace leave_management_udemy.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
+            [DataType(DataType.Text)]
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
+
+            [DataType(DataType.Text)]
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
+
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
@@ -41,6 +49,8 @@ namespace leave_management_udemy.Areas.Identity.Pages.Account.Manage
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            //var firstName = await _userManager.GetFirstNameAsync(user);
+            //var lastName = await _userManager.GetLastNameAsync(user);
 
             Username = userName;
 
@@ -86,6 +96,28 @@ namespace leave_management_udemy.Areas.Identity.Pages.Account.Manage
                     return RedirectToPage();
                 }
             }
+
+            //var firstName = await _userManager.GetFirstNameAsync(user);
+            //if (Input.FirstName != firstName)
+            //{
+            //    var setFirstNameResult = await _userManager.SetFirstNameAsync(user, Input.FirstName);
+            //    if (!setFirstName.Succeeded)
+            //    {
+            //        StatusMessage = "Unexpected error when trying to set first name.";
+            //        return RedirectToPage();
+            //    }
+            //}
+
+            //var lastName = await _userManager.GetLastNameAsync(user);
+            //if (Input.LastName != lastName)
+            //{
+            //    var setLastNameResult = await _userManager.SetLastNameAsync(user, Input.LastName);
+            //    if (!setLastName.Succeeded)
+            //    {
+            //        StatusMessage = "Unexpected error when trying to set last name.";
+            //        return RedirectToPage();
+            //    }
+            //}
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
