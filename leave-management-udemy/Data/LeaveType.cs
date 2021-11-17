@@ -8,7 +8,6 @@ namespace leave_management_udemy.Data
 {
     public class LeaveType
     {
-        [Key]
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
